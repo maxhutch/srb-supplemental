@@ -1,0 +1,82 @@
+ &control
+  calculation = 'scf'
+  restart_mode = 'from_scratch'
+  pseudo_dir = '../pseudo/'
+  outdir = './ref/'
+  prefix = 'ni_4'
+  tprnfor = .true.,
+  tstress = .true.
+  nstep = 500
+ /
+
+ &system
+  ibrav = 12
+  a = 4.3812 
+  b = 4.3812
+  c = 36
+  cosAB = 0.5
+  nat = 17
+  ntyp = 3
+  ecutwfc = 32
+  ecutrho = 256.0
+  occupations = 'smearing'
+  smearing = 'gaussian'
+  degauss = 0.002
+ /
+
+ &electrons
+  diagonalization = 'david'
+  conv_thr = 1.0e-10
+  mixing_beta = 0.1
+ /
+
+ &srb
+   use_srb = .false.
+ /
+
+ATOMIC_SPECIES
+ Ni 58.69 Ni.pbe-nd-rrkjus.UPF
+ H  1.0   H.pbe-van_bm.UPF
+ O  14.0  O.pbe-van_bm.UPF
+
+ATOMIC_POSITIONS alat
+ Ni   0.00000   0.00000   1.48765
+ Ni   0.50119   0.28903   1.52479
+ Ni   0.99979   0.57726   1.52906
+ Ni   0.82806   0.28841   1.06160
+ Ni   0.33340  -0.00349   1.06135
+ Ni   0.32817   0.57199   1.06190
+ Ni   0.16119   0.28364   0.60570
+ Ni   0.66007  -0.00464   0.60543
+ Ni   0.66037   0.57169   0.60563
+ Ni  -0.00854  -0.00694   0.16122
+ Ni   0.49187   0.28200   0.15198
+ Ni   0.99146   0.57080   0.15359
+ H    0.97925   0.90854   2.01627
+ H    0.27623   0.39129   2.01584
+ H    0.81144   0.46816   2.02586
+ O    1.00404   0.57847   1.97149
+ O    0.48455   0.27894   1.97606
+
+K_POINTS (automatic)
+ 12 12 1 0 0 0
+
+@run
+
+ &control
+  calculation = 'nscf'
+ /
+
+ &system
+  nosym = .true.
+ /
+
+ K_POINTS crystal_b
+  4
+  0.0 0.0 0.0 12
+  0.33333 0.33333 0.0 12
+  0.5 0.0 0.0 12
+  0.0 0.0 0.0 12
+
+@run
+
